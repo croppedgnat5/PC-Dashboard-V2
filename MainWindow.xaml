@@ -1,0 +1,1128 @@
+﻿<Window x:Class="PCDashboard.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PC Dashboard"
+        Width="1200"
+        Height="750"
+        MinWidth="900"
+        MinHeight="600"
+        Background="{DynamicResource WindowBackground}">
+
+    <Window.Resources>
+
+        <!-- COLORS -->
+
+        <SolidColorBrush x:Key="WindowBackground"
+                         Color="#0B0F14"/>
+
+        <SolidColorBrush x:Key="SidebarBackground"
+                         Color="#0E141C"/>
+
+        <SolidColorBrush x:Key="PanelBackground"
+                         Color="#111720"/>
+
+        <SolidColorBrush x:Key="PanelBorder"
+                         Color="#242C38"/>
+
+        <SolidColorBrush x:Key="PrimaryText"
+                         Color="#F2F5F8"/>
+
+        <SolidColorBrush x:Key="SecondaryText"
+                         Color="#8D99A8"/>
+
+        <SolidColorBrush x:Key="AccentText"
+                         Color="#B06CFF"/>
+
+        <SolidColorBrush x:Key="SelectedButtonBackground"
+                         Color="#241B35"/>
+
+        <SolidColorBrush x:Key="ButtonBackground"
+                         Color="#18212C"/>
+
+
+        <!-- SIDEBAR BUTTON STYLE -->
+
+        <Style x:Key="SidebarButton"
+               TargetType="Button">
+
+            <Setter Property="Height"
+                    Value="65"/>
+
+            <Setter Property="Margin"
+                    Value="8,4"/>
+
+            <Setter Property="Background"
+                    Value="Transparent"/>
+
+            <Setter Property="Foreground"
+                    Value="{DynamicResource SecondaryText}"/>
+
+            <Setter Property="BorderThickness"
+                    Value="0"/>
+
+            <Setter Property="FontSize"
+                    Value="15"/>
+
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+
+        </Style>
+
+
+        <!-- DATAGRID STYLE -->
+
+        <Style TargetType="DataGrid">
+
+            <Setter Property="Background"
+                    Value="#111720"/>
+
+            <Setter Property="Foreground"
+                    Value="#F2F5F8"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#242C38"/>
+
+            <Setter Property="BorderThickness"
+                    Value="1"/>
+
+            <Setter Property="GridLinesVisibility"
+                    Value="Horizontal"/>
+
+            <Setter Property="HorizontalGridLinesBrush"
+                    Value="#242C38"/>
+
+            <Setter Property="VerticalGridLinesBrush"
+                    Value="#242C38"/>
+
+            <Setter Property="RowBackground"
+                    Value="#111720"/>
+
+            <Setter Property="AlternatingRowBackground"
+                    Value="#151C26"/>
+
+            <Setter Property="FontSize"
+                    Value="14"/>
+
+        </Style>
+
+
+        <!-- DATAGRID HEADER STYLE -->
+
+        <Style TargetType="DataGridColumnHeader">
+
+            <Setter Property="Background"
+                    Value="#18212C"/>
+
+            <Setter Property="Foreground"
+                    Value="#B06CFF"/>
+
+            <Setter Property="FontWeight"
+                    Value="SemiBold"/>
+
+            <Setter Property="Padding"
+                    Value="12,10"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#242C38"/>
+
+            <Setter Property="BorderThickness"
+                    Value="0,0,0,1"/>
+
+        </Style>
+
+
+        <!-- DATAGRID ROW STYLE -->
+
+        <Style TargetType="DataGridRow">
+
+            <Setter Property="Background"
+                    Value="#111720"/>
+
+            <Setter Property="Foreground"
+                    Value="#F2F5F8"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#242C38"/>
+
+            <Style.Triggers>
+
+                <Trigger Property="IsMouseOver"
+                         Value="True">
+
+                    <Setter Property="Background"
+                            Value="#1C2430"/>
+
+                </Trigger>
+
+                <Trigger Property="IsSelected"
+                         Value="True">
+
+                    <Setter Property="Background"
+                            Value="#241B35"/>
+
+                    <Setter Property="Foreground"
+                            Value="#FFFFFF"/>
+
+                </Trigger>
+
+            </Style.Triggers>
+
+        </Style>
+
+
+        <!-- DATAGRID CELL STYLE -->
+
+        <Style TargetType="DataGridCell">
+
+            <Setter Property="Foreground"
+                    Value="#F2F5F8"/>
+
+            <Setter Property="Background"
+                    Value="Transparent"/>
+
+            <Setter Property="BorderThickness"
+                    Value="0"/>
+
+            <Setter Property="Padding"
+                    Value="12,8"/>
+
+        </Style>
+
+
+        <!-- COMBOBOX STYLE -->
+
+        <Style TargetType="ComboBox">
+
+            <Setter Property="Background"
+                    Value="#18212C"/>
+
+            <Setter Property="Foreground"
+                    Value="#F2F5F8"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#242C38"/>
+
+            <Setter Property="BorderThickness"
+                    Value="1"/>
+
+            <Setter Property="FontSize"
+                    Value="13"/>
+
+            <Setter Property="Padding"
+                    Value="8,0"/>
+
+        </Style>
+
+
+        <!-- COMBOBOX ITEM STYLE -->
+
+        <Style TargetType="ComboBoxItem">
+
+            <Setter Property="Background"
+                    Value="#18212C"/>
+
+            <Setter Property="Foreground"
+                    Value="#F2F5F8"/>
+
+            <Setter Property="Padding"
+                    Value="8,6"/>
+
+            <Style.Triggers>
+
+                <Trigger Property="IsMouseOver"
+                         Value="True">
+
+                    <Setter Property="Background"
+                            Value="#241B35"/>
+
+                    <Setter Property="Foreground"
+                            Value="#FFFFFF"/>
+
+                </Trigger>
+
+                <Trigger Property="IsSelected"
+                         Value="True">
+
+                    <Setter Property="Background"
+                            Value="#241B35"/>
+
+                    <Setter Property="Foreground"
+                            Value="#FFFFFF"/>
+
+                </Trigger>
+
+            </Style.Triggers>
+
+        </Style>
+
+    </Window.Resources>
+
+
+    <!-- ===================================================== -->
+    <!-- MAIN WINDOW -->
+    <!-- ===================================================== -->
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+
+            <!-- SIDEBAR -->
+
+            <ColumnDefinition Width="190"/>
+
+            <!-- CONTENT -->
+
+            <ColumnDefinition Width="*"/>
+
+        </Grid.ColumnDefinitions>
+
+
+        <!-- ================================================= -->
+        <!-- SIDEBAR -->
+        <!-- ================================================= -->
+
+        <Border Grid.Column="0"
+                Background="{DynamicResource SidebarBackground}"
+                BorderBrush="{DynamicResource PanelBorder}"
+                BorderThickness="0,0,1,0">
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+
+                    <RowDefinition Height="Auto"/>
+
+                    <RowDefinition Height="*"/>
+
+                    <RowDefinition Height="Auto"/>
+
+                </Grid.RowDefinitions>
+
+
+                <!-- APP NAME -->
+
+                <StackPanel Grid.Row="0"
+                            Margin="20,25,20,25">
+
+                    <TextBlock Text="PC"
+                               FontSize="13"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource AccentText}"/>
+
+                    <TextBlock Text="Dashboard"
+                               FontSize="23"
+                               FontWeight="Bold"
+                               Foreground="{DynamicResource PrimaryText}"/>
+
+                </StackPanel>
+
+
+                <!-- NAVIGATION -->
+
+                <StackPanel Grid.Row="1">
+
+                    <!-- HOME -->
+
+                    <Button x:Name="HomeButton"
+                            Style="{StaticResource SidebarButton}"
+                            Content="⌂    Home"
+                            HorizontalContentAlignment="Left"
+                            Padding="15,0"
+                            Background="{DynamicResource SelectedButtonBackground}"
+                            Foreground="{DynamicResource PrimaryText}"
+                            Click="HomeButton_Click"/>
+
+
+                    <!-- HARDWARE -->
+
+                    <Button x:Name="HardwareButton"
+                            Style="{StaticResource SidebarButton}"
+                            Content="▣    Hardware"
+                            HorizontalContentAlignment="Left"
+                            Padding="15,0"
+                            Click="HardwareButton_Click"/>
+
+
+                    <!-- DISK -->
+
+                    <Button x:Name="DiskButton"
+                            Style="{StaticResource SidebarButton}"
+                            Content="◉    Disk Analyzer"
+                            HorizontalContentAlignment="Left"
+                            Padding="15,0"
+                            Click="DiskButton_Click"/>
+
+
+                    <!-- SETTINGS -->
+
+                    <Button x:Name="SettingsButton"
+                            Style="{StaticResource SidebarButton}"
+                            Content="⚙    Settings"
+                            HorizontalContentAlignment="Left"
+                            Padding="15,0"
+                            Click="SettingsButton_Click"/>
+
+                </StackPanel>
+
+
+                <!-- VERSION -->
+
+                <TextBlock Grid.Row="2"
+                           Text="PC Dashboard V2"
+                           FontSize="11"
+                           Foreground="{DynamicResource SecondaryText}"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,15"/>
+
+            </Grid>
+
+        </Border>
+
+
+        <!-- ================================================= -->
+        <!-- CONTENT AREA -->
+        <!-- ================================================= -->
+
+        <Grid Grid.Column="1">
+
+
+            <!-- ================================================= -->
+            <!-- HOME PAGE -->
+            <!-- ================================================= -->
+
+            <Grid x:Name="HomePage">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+
+                <!-- HEADER -->
+
+                <StackPanel Grid.Row="0"
+                            Margin="25,20,25,15">
+
+                    <TextBlock Text="Process Monitor"
+                               FontSize="26"
+                               FontWeight="Bold"
+                               Foreground="{DynamicResource PrimaryText}"/>
+
+                    <TextBlock Text="Monitor applications and processes currently running on your PC"
+                               FontSize="13"
+                               Foreground="{DynamicResource SecondaryText}"
+                               Margin="0,4,0,0"/>
+
+                </StackPanel>
+
+
+                <!-- PROCESS CONTROLS -->
+
+                <Border Grid.Row="1"
+                        Margin="25,0,25,10"
+                        Padding="10"
+                        Background="{DynamicResource PanelBackground}"
+                        BorderBrush="{DynamicResource PanelBorder}"
+                        BorderThickness="1"
+                        CornerRadius="8">
+
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="175"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <!-- TITLE -->
+
+                        <TextBlock Grid.Column="0"
+                                   Text="Running Processes"
+                                   FontSize="15"
+                                   FontWeight="SemiBold"
+                                   Foreground="{DynamicResource PrimaryText}"
+                                   VerticalAlignment="Center"/>
+
+
+                        <!-- SORT LABEL -->
+
+                        <TextBlock Grid.Column="1"
+                                   Text="Sort By:"
+                                   FontSize="13"
+                                   Foreground="{DynamicResource SecondaryText}"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,8,0"/>
+
+
+                        <!-- SORT DROPDOWN -->
+
+                        <ComboBox x:Name="SortComboBox"
+                                  Grid.Column="2"
+                                  Width="175"
+                                  Height="32"
+                                  SelectedIndex="0"
+                                  SelectionChanged="SortComboBox_SelectionChanged"
+                                  Background="{DynamicResource ButtonBackground}"
+                                  Foreground="{DynamicResource PrimaryText}"
+                                  BorderBrush="{DynamicResource PanelBorder}">
+
+                            <ComboBoxItem Content="CPU — Highest"/>
+
+                            <ComboBoxItem Content="CPU — Lowest"/>
+
+                            <ComboBoxItem Content="Memory — Highest"/>
+
+                            <ComboBoxItem Content="Memory — Lowest"/>
+
+                            <ComboBoxItem Content="Name — A → Z"/>
+
+                            <ComboBoxItem Content="Name — Z → A"/>
+
+                            <ComboBoxItem Content="PID — Lowest"/>
+
+                            <ComboBoxItem Content="PID — Highest"/>
+
+                        </ComboBox>
+
+
+                        <!-- REFRESH -->
+
+                        <Button x:Name="RefreshProcessesButton"
+                                Grid.Column="3"
+                                Content="Refresh"
+                                Width="90"
+                                Height="32"
+                                Margin="10,0,0,0"
+                                Click="RefreshProcessesButton_Click"
+                                Background="{DynamicResource ButtonBackground}"
+                                Foreground="{DynamicResource PrimaryText}"
+                                BorderBrush="{DynamicResource PanelBorder}"/>
+
+                    </Grid>
+
+                </Border>
+
+
+                <!-- PROCESS LIST -->
+
+                <Border Grid.Row="2"
+                        Margin="25,0,25,20"
+                        Padding="10"
+                        Background="{DynamicResource PanelBackground}"
+                        BorderBrush="{DynamicResource PanelBorder}"
+                        BorderThickness="1"
+                        CornerRadius="8">
+
+                    <DataGrid x:Name="ProcessDataGrid"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              HeadersVisibility="Column"
+                              Background="Transparent"
+                              Foreground="{DynamicResource PrimaryText}"
+                              BorderThickness="0"
+                              GridLinesVisibility="Horizontal">
+
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Header="Process"
+                                                Binding="{Binding Name}"
+                                                Width="*"/>
+
+                            <DataGridTextColumn Header="PID"
+                                                Binding="{Binding Id}"
+                                                Width="100"/>
+
+                            <DataGridTextColumn Header="CPU"
+                                                Binding="{Binding CpuUsage}"
+                                                Width="150"/>
+
+                            <DataGridTextColumn Header="Memory"
+                                                Binding="{Binding MemoryUsage}"
+                                                Width="150"/>
+
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+
+                </Border>
+
+            </Grid>
+
+
+            <!-- ================================================= -->
+            <!-- HARDWARE PAGE -->
+            <!-- ================================================= -->
+
+            <Grid x:Name="HardwarePage"
+      Visibility="Collapsed"
+      Margin="30">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- HEADER -->
+                <StackPanel Grid.Row="0"
+                Margin="0,0,0,25">
+
+                    <TextBlock Text="Hardware Information"
+                   FontSize="28"
+                   FontWeight="SemiBold"
+                   Foreground="{DynamicResource PrimaryText}"/>
+
+                    <TextBlock Text="View the hardware and system components of your PC"
+                   Margin="0,6,0,0"
+                   FontSize="14"
+                   Foreground="{DynamicResource SecondaryText}"/>
+                </StackPanel>
+
+                <!-- HARDWARE CARDS -->
+                <Grid Grid.Row="1"
+          Margin="0,0,0,20">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- CPU -->
+                    <Border Grid.Column="0"
+                Margin="0,0,10,0"
+                Padding="20"
+                Background="{DynamicResource PanelBackground}"
+                BorderBrush="{DynamicResource PanelBorder}"
+                BorderThickness="1"
+                CornerRadius="8">
+
+                        <StackPanel>
+
+                            <TextBlock Text="CPU"
+                           FontSize="13"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource AccentText}"/>
+
+                            <TextBlock x:Name="HardwareCpuName"
+                           Text="Loading..."
+                           Margin="0,12,0,12"
+                           FontSize="18"
+                           FontWeight="SemiBold"
+                           TextWrapping="Wrap"
+                           Foreground="{DynamicResource PrimaryText}"/>
+
+                            <TextBlock x:Name="HardwareCpuCores"
+                           Text="Loading..."
+                           FontSize="14"
+                           Foreground="{DynamicResource SecondaryText}"/>
+
+                            <TextBlock x:Name="HardwareCpuThreads"
+                           Text="Loading..."
+                           Margin="0,5,0,0"
+                           FontSize="14"
+                           Foreground="{DynamicResource SecondaryText}"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+                    <!-- GPU -->
+                    <Border Grid.Column="1"
+                Margin="5,0"
+                Padding="20"
+                Background="{DynamicResource PanelBackground}"
+                BorderBrush="{DynamicResource PanelBorder}"
+                BorderThickness="1"
+                CornerRadius="8">
+
+                        <StackPanel>
+
+                            <TextBlock Text="GPU"
+                           FontSize="13"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource AccentText}"/>
+
+                            <TextBlock x:Name="HardwareGpuName"
+                           Text="Loading..."
+                           Margin="0,12,0,12"
+                           FontSize="18"
+                           FontWeight="SemiBold"
+                           TextWrapping="Wrap"
+                           Foreground="{DynamicResource PrimaryText}"/>
+
+                            <TextBlock Text="VRAM"
+                           FontSize="12"
+                           Foreground="{DynamicResource SecondaryText}"/>
+
+                            <TextBlock x:Name="HardwareGpuVram"
+                           Text="Loading..."
+                           Margin="0,3,0,0"
+                           FontSize="15"
+                           Foreground="{DynamicResource PrimaryText}"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+                    <!-- RAM -->
+                    <Border Grid.Column="2"
+                Margin="10,0,0,0"
+                Padding="20"
+                Background="{DynamicResource PanelBackground}"
+                BorderBrush="{DynamicResource PanelBorder}"
+                BorderThickness="1"
+                CornerRadius="8">
+
+                        <StackPanel>
+
+                            <TextBlock Text="MEMORY"
+                           FontSize="13"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource AccentText}"/>
+
+                            <TextBlock x:Name="HardwareRamTotal"
+                           Text="Loading..."
+                           Margin="0,12,0,12"
+                           FontSize="24"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource PrimaryText}"/>
+
+                            <TextBlock x:Name="HardwareRamUsed"
+                           Text="Used: Loading..."
+                           FontSize="14"
+                           Foreground="{DynamicResource SecondaryText}"/>
+
+                            <TextBlock x:Name="HardwareRamAvailable"
+                           Text="Available: Loading..."
+                           Margin="0,5,0,0"
+                           FontSize="14"
+                           Foreground="{DynamicResource SecondaryText}"/>
+
+                            <TextBlock x:Name="HardwareRamUsage"
+                           Text="Loading..."
+                           Margin="0,5,0,0"
+                           FontSize="14"
+                           Foreground="{DynamicResource PrimaryText}"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+                </Grid>
+
+                <!-- SYSTEM INFORMATION -->
+                <Grid Grid.Row="2">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- SYSTEM -->
+                    <Border Grid.Column="0"
+                Margin="0,0,10,0"
+                Padding="20"
+                Background="{DynamicResource PanelBackground}"
+                BorderBrush="{DynamicResource PanelBorder}"
+                BorderThickness="1"
+                CornerRadius="8">
+
+                        <StackPanel>
+
+                            <TextBlock Text="SYSTEM"
+                           FontSize="13"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource AccentText}"/>
+
+                            <TextBlock Text="Windows"
+                           Margin="0,18,0,3"
+                           FontSize="12"
+                           Foreground="{DynamicResource SecondaryText}"/>
+
+                            <TextBlock x:Name="HardwareWindows"
+                           Text="Loading..."
+                           FontSize="15"
+                           Foreground="{DynamicResource PrimaryText}"
+                           TextWrapping="Wrap"/>
+
+                            <TextBlock Text="Architecture"
+                           Margin="0,18,0,3"
+                           FontSize="12"
+                           Foreground="{DynamicResource SecondaryText}"/>
+
+                            <TextBlock x:Name="HardwareArchitecture"
+                           Text="Loading..."
+                           FontSize="15"
+                           Foreground="{DynamicResource PrimaryText}"/>
+
+                            <TextBlock Text="Logical Processors"
+                           Margin="0,18,0,3"
+                           FontSize="12"
+                           Foreground="{DynamicResource SecondaryText}"/>
+
+                            <TextBlock x:Name="HardwareProcessorCount"
+                           Text="Loading..."
+                           FontSize="15"
+                           Foreground="{DynamicResource PrimaryText}"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+                    <!-- MOTHERBOARD -->
+                    <Border Grid.Column="1"
+                Margin="10,0,0,0"
+                Padding="20"
+                Background="{DynamicResource PanelBackground}"
+                BorderBrush="{DynamicResource PanelBorder}"
+                BorderThickness="1"
+                CornerRadius="8">
+
+                        <StackPanel>
+
+                            <TextBlock Text="MOTHERBOARD"
+                           FontSize="13"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource AccentText}"/>
+
+                            <TextBlock Text="Motherboard"
+                           Margin="0,18,0,3"
+                           FontSize="12"
+                           Foreground="{DynamicResource SecondaryText}"/>
+
+                            <TextBlock x:Name="HardwareMotherboard"
+                           Text="Loading..."
+                           FontSize="18"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource PrimaryText}"
+                           TextWrapping="Wrap"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+                </Grid>
+
+            </Grid>
+
+
+            <!-- ================================================= -->
+            <!-- DISK PAGE -->
+            <!-- ================================================= -->
+
+            <Grid x:Name="DiskPage" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Header -->
+                <StackPanel Grid.Row="0" Margin="0,0,0,25">
+                    <TextBlock
+            Text="Disk Analyzer"
+            Foreground="{DynamicResource PrimaryText}"
+            FontSize="28"
+            FontWeight="SemiBold"/>
+
+                    <TextBlock
+            Text="View storage usage and information for your drives"
+            Foreground="{DynamicResource SecondaryText}"
+            FontSize="13"
+            Margin="0,6,0,0"/>
+                </StackPanel>
+
+                <!-- Control Bar -->
+                <Grid Grid.Row="1" Margin="0,0,0,18">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+            Text="Storage Drives"
+            Foreground="{DynamicResource PrimaryText}"
+            FontSize="16"
+            FontWeight="SemiBold"
+            VerticalAlignment="Center"/>
+
+                    <Button
+            x:Name="RefreshDisksButton"
+            Grid.Column="1"
+            Content="Refresh"
+            Click="RefreshDisksButton_Click"
+            Width="90"
+            Height="34"
+            Background="{DynamicResource ButtonBackground}"
+            Foreground="{DynamicResource PrimaryText}"
+            BorderBrush="{DynamicResource PanelBorder}"
+            BorderThickness="1"/>
+                </Grid>
+
+                <!-- Drive Cards -->
+                <ScrollViewer
+        Grid.Row="2"
+        VerticalScrollBarVisibility="Auto"
+        HorizontalScrollBarVisibility="Disabled">
+
+                    <WrapPanel
+            x:Name="DiskCardsPanel"
+            Orientation="Horizontal"/>
+                </ScrollViewer>
+            </Grid>
+
+            <!-- ================================================= -->
+            <!-- SETTINGS PAGE -->
+            <!-- ================================================= -->
+
+            <Grid x:Name="SettingsPage" Visibility="Collapsed">
+
+                <ScrollViewer
+        VerticalScrollBarVisibility="Auto"
+        HorizontalScrollBarVisibility="Disabled">
+
+                    <StackPanel>
+
+                        <!-- Header -->
+                        <StackPanel Margin="0,0,0,25">
+
+                            <TextBlock
+                    Text="Settings"
+                    Foreground="{DynamicResource PrimaryText}"
+                    FontSize="28"
+                    FontWeight="SemiBold"/>
+
+                            <TextBlock
+                    Text="Configure PC Dashboard behavior and preferences"
+                    Foreground="{DynamicResource SecondaryText}"
+                    FontSize="13"
+                    Margin="0,6,0,0"/>
+
+                        </StackPanel>
+
+
+                        <!-- General Settings -->
+                        <Border
+                Background="{DynamicResource PanelBackground}"
+                BorderBrush="{DynamicResource PanelBorder}"
+                BorderThickness="1"
+                CornerRadius="8"
+                Padding="20"
+                Margin="0,0,0,18">
+
+                            <StackPanel>
+
+                                <TextBlock
+                        Text="General"
+                        Foreground="{DynamicResource PrimaryText}"
+                        FontSize="17"
+                        FontWeight="SemiBold"/>
+
+                                <TextBlock
+                        Text="Control how PC Dashboard behaves while running."
+                        Foreground="{DynamicResource SecondaryText}"
+                        FontSize="12"
+                        Margin="0,5,0,20"/>
+
+
+                                <!-- Refresh Interval -->
+                                <Grid Margin="0,0,0,18">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="180"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel
+                            VerticalAlignment="Center">
+
+                                        <TextBlock
+                                Text="Refresh Interval"
+                                Foreground="{DynamicResource PrimaryText}"
+                                FontSize="14"/>
+
+                                        <TextBlock
+                                Text="How often system information is refreshed."
+                                Foreground="{DynamicResource SecondaryText}"
+                                FontSize="11"
+                                Margin="0,4,0,0"/>
+
+                                    </StackPanel>
+
+                                    <ComboBox
+                            x:Name="SettingsRefreshComboBox"
+                            Grid.Column="1"
+                            Height="34"
+                            SelectedIndex="1">
+
+                                        <ComboBoxItem Content="1 second"/>
+                                        <ComboBoxItem Content="2 seconds"/>
+                                        <ComboBoxItem Content="5 seconds"/>
+                                        <ComboBoxItem Content="10 seconds"/>
+
+                                    </ComboBox>
+
+                                </Grid>
+
+
+                                <!-- Startup Page -->
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="180"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel
+                            VerticalAlignment="Center">
+
+                                        <TextBlock
+                                Text="Startup Page"
+                                Foreground="{DynamicResource PrimaryText}"
+                                FontSize="14"/>
+
+                                        <TextBlock
+                                Text="Page shown when the application starts."
+                                Foreground="{DynamicResource SecondaryText}"
+                                FontSize="11"
+                                Margin="0,4,0,0"/>
+
+                                    </StackPanel>
+
+                                    <ComboBox
+                            x:Name="SettingsStartupPageComboBox"
+                            Grid.Column="1"
+                            Height="34"
+                            SelectedIndex="0">
+
+                                        <ComboBoxItem Content="Home"/>
+                                        <ComboBoxItem Content="Hardware"/>
+                                        <ComboBoxItem Content="Disk Analyzer"/>
+
+                                    </ComboBox>
+
+                                </Grid>
+
+                            </StackPanel>
+
+                        </Border>
+
+
+                        <!-- Actions -->
+                        <Border
+                Background="{DynamicResource PanelBackground}"
+                BorderBrush="{DynamicResource PanelBorder}"
+                BorderThickness="1"
+                CornerRadius="8"
+                Padding="20"
+                Margin="0,0,0,18">
+
+                            <StackPanel>
+
+                                <TextBlock
+                        Text="Settings Actions"
+                        Foreground="{DynamicResource PrimaryText}"
+                        FontSize="17"
+                        FontWeight="SemiBold"
+                        Margin="0,0,0,15"/>
+
+                                <StackPanel
+                        Orientation="Horizontal">
+
+                                    <Button
+                            x:Name="ApplySettingsButton"
+                            Content="Apply Settings"
+                            Click="ApplySettingsButton_Click"
+                            Width="125"
+                            Height="36"
+                            Margin="0,0,10,0"
+                            Background="{DynamicResource SelectedButtonBackground}"
+                            Foreground="{DynamicResource PrimaryText}"
+                            BorderBrush="{DynamicResource PanelBorder}"
+                            BorderThickness="1"/>
+
+                                    <Button
+                            x:Name="ResetSettingsButton"
+                            Content="Reset Defaults"
+                            Click="ResetSettingsButton_Click"
+                            Width="125"
+                            Height="36"
+                            Background="{DynamicResource ButtonBackground}"
+                            Foreground="{DynamicResource PrimaryText}"
+                            BorderBrush="{DynamicResource PanelBorder}"
+                            BorderThickness="1"/>
+
+                                </StackPanel>
+
+                                <TextBlock
+                        x:Name="SettingsStatusText"
+                        Text="Settings are currently using their default values."
+                        Foreground="{DynamicResource SecondaryText}"
+                        FontSize="11"
+                        Margin="0,12,0,0"/>
+
+                            </StackPanel>
+
+                        </Border>
+
+
+                        <!-- About -->
+                        <Border
+                Background="{DynamicResource PanelBackground}"
+                BorderBrush="{DynamicResource PanelBorder}"
+                BorderThickness="1"
+                CornerRadius="8"
+                Padding="20">
+
+                            <StackPanel>
+
+                                <TextBlock
+                        Text="About PC Dashboard"
+                        Foreground="{DynamicResource PrimaryText}"
+                        FontSize="17"
+                        FontWeight="SemiBold"/>
+
+                                <TextBlock
+                        Text="PC Dashboard V2"
+                        Foreground="{DynamicResource AccentText}"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Margin="0,12,0,4"/>
+
+                                <TextBlock
+                        Text="A Windows system monitoring and analysis application."
+                        Foreground="{DynamicResource SecondaryText}"
+                        FontSize="12"/>
+
+                                <TextBlock
+                        Text="Built with C# and WPF on .NET."
+                        Foreground="{DynamicResource SecondaryText}"
+                        FontSize="12"
+                        Margin="0,5,0,0"/>
+
+                                <TextBlock
+                        Text="Current modules: Process Monitor • Hardware Information • Disk Analyzer"
+                        Foreground="{DynamicResource SecondaryText}"
+                        FontSize="12"
+                        TextWrapping="Wrap"
+                        Margin="0,5,0,0"/>
+
+                            </StackPanel>
+
+                        </Border>
+
+                    </StackPanel>
+
+                </ScrollViewer>
+
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+
+</Window>
